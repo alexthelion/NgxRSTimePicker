@@ -21,6 +21,9 @@ export class NgxRsTimePickerComponent implements OnInit, AfterViewInit {
   @ViewChild('minutesList') minutesList: ElementRef;
   @Input() date: Date;
   @Input() primaryColor = 'darkblue';
+  @Input() backgroundColor = 'white';
+  @Input() textColor = 'black';
+  @Input() inputControlBackgroundColor = 'white';
 
   constructor() {
     for (let i = 0; i < 24; i++) {
