@@ -1,5 +1,5 @@
 # NgxRSTimePicker
-This is an simple Angular Time Picker
+This is a simple Angular Time Picker
 
 ![Demo Image](https://github.com/alexthelion/NgxRSTimePicker/blob/master/images/demo.JPG)
 
@@ -8,8 +8,9 @@ This is an simple Angular Time Picker
 * date - Date object for setting hour and time
 * primaryColor - Color of the selected hour, minute, and the pick time background color
 
-### Installation
-`npm i NgxRsTimePicker`
+## Installation
+* Bootstrap is required `npm i Boostrap` 
+* `npm i ngx-rs-time-picker`
 
 
 ### Created By RSinnotech Team
