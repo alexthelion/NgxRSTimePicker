@@ -5,12 +5,12 @@
   "author": "RSinntoech",
   "repository": {
     "type": "git",
-    "url": "https://github.com/alexthelion/rs-time-picker.git"
+    "url": "https://github.com/alexthelion/NgxRSTimePicker.git"
   },
   "bugs": {
-    "url": "https://github.com/alexthelion/rs-time-picker/issues"
+    "url": "https://github.com/alexthelion/NgxRSTimePicker/issues"
   },
-  "homepage": "https://github.com/alexthelion/rs-time-picker",
+  "homepage": "https://github.com/alexthelion/NgxRSTimePicker",
   "keywords": [
     "angular",
     "typescript",
