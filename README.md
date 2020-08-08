@@ -12,6 +12,8 @@ This is a simple Angular Time Picker
 * Bootstrap is required `npm i Boostrap` 
 * `npm i ngx-rs-time-picker`
 
+### Demo
+https://rs-time-picker-demo.firebaseapp.com/
 
 ### Created By RSinnotech Team
 Visit us at: www.rsinnotech.com
