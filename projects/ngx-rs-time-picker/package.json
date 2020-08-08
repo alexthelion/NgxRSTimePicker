@@ -1,0 +1,29 @@
+{
+  "name": "ngx-rs-time-picker",
+  "version": "0.0.1",
+  "description": "Angular Time Picker",
+  "author": "RSinntoech",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/alexthelion/rs-time-picker.git"
+  },
+  "bugs": {
+    "url": "https://github.com/alexthelion/rs-time-picker/issues"
+  },
+  "homepage": "https://github.com/alexthelion/rs-time-picker",
+  "keywords": [
+    "angular",
+    "typescript",
+    "TimePicker",
+    "css"
+  ],
+  "license": "MIT",
+  "peerDependencies": {
+    "@angular/common": "^8.2.14",
+    "@angular/core": "^8.2.14",
+    "bootstrap": "^4.5.2"
+  },
+  "dependencies": {
+    "tslib": "^2.0.0"
+  }
+}
