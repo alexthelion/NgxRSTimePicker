@@ -1,36 +1,34 @@
 <div class="container">
   <div class="row d-flex justify-content-center">
-    <div class="card mt-3 col-8 d-flex justify-content-center">
-      <div class="card-body">
-        <div class="row mt-3 d-flex justify-content-center">
-          <ul class="col-6 col-md-2 time-unit-card time-picker-container no-select" #hoursList>
-            <li class="time-unit p-2 d-flex justify-content-center" *ngFor="let hour of hours; let i = index"
-                [ngClass]="{'active': selectedHour === hour}"
-                [style.background-color]="selectedHour === hour ? this.primaryColor : 'unset'"
-                (click)="setHours(hour)">{{hour}}</li>
-          </ul>
-          <ul class="col-6 time-unit-card col-md-2 time-picker-container no-select" #minutesList>
-            <li class="time-unit p-2 d-flex justify-content-center" *ngFor="let minute of minutes; let i = index"
-                [ngClass]="{'active': selectedMinute === minute}"
-                [style.background-color]="selectedMinute === minute ? this.primaryColor : 'unset'"
-                (click)="setMinutes(minute)">{{minute}}</li>
-          </ul>
+    <div class="card mt-3 col-12 d-flex justify-content-center">
+      <div class="row mt-3 d-flex justify-content-center">
+        <ul class="col-6 col-md-2 time-unit-card time-picker-container no-select" #hoursList>
+          <li class="time-unit p-2 d-flex justify-content-center" *ngFor="let hour of hours; let i = index"
+              [ngClass]="{'active': selectedHour === hour}"
+              [style.background-color]="selectedHour === hour ? this.primaryColor : 'unset'"
+              (click)="setHours(hour)">{{hour}}</li>
+        </ul>
+        <ul class="col-6 time-unit-card col-md-2 time-picker-container no-select" #minutesList>
+          <li class="time-unit p-2 d-flex justify-content-center" *ngFor="let minute of minutes; let i = index"
+              [ngClass]="{'active': selectedMinute === minute}"
+              [style.background-color]="selectedMinute === minute ? this.primaryColor : 'unset'"
+              (click)="setMinutes(minute)">{{minute}}</li>
+        </ul>
+      </div>
+      <div class="row d-flex justify-content-center align-items-center mt-3">
+        <div class="form col-12 d-flex justify-content-center">
+          <input type="number" class="d-inline-flex form-control text-center px-0" hours
+                 [style.border-bottom-color]="this.primaryColor"
+                 [value]="selectedHour" (change)="setSelectedHour($event)">
+          <input type="text" class="d-inline-flex form-control" value=":" readonly disabled>
+          <input type="number" class="d-inline-flex form-control text-center px-0" minutes
+                 [style.border-bottom-color]="this.primaryColor"
+                 [value]="selectedMinute" (change)="setSelectedMinute($event)">
         </div>
-        <div class="row d-flex justify-content-center align-items-center mt-3">
-          <div class="form col-12 d-flex justify-content-center">
-            <input type="number" class="d-inline-flex form-control text-center px-0" hours
-                   [style.border-bottom-color]="this.primaryColor"
-                   [value]="selectedHour" (change)="setSelectedHour($event)">
-            <input type="text" class="d-inline-flex form-control" value=":" readonly disabled>
-            <input type="number" class="d-inline-flex form-control text-center px-0" minutes
-                   [style.border-bottom-color]="this.primaryColor"
-                   [value]="selectedMinute" (change)="setSelectedMinute($event)">
-          </div>
-          <div class="col-md-6 mt-3 d-flex justify-content-center">
-            <button type="button" class="btn btn-primary" (click)="okBtnClicked()"
-                    [style.background-color]="this.primaryColor"
-                    [style.border-color]="this.primaryColor">{{pickTimeText}}</button>
-          </div>
+        <div class="col-md-6 mt-3 d-flex justify-content-center">
+          <button type="button" class="btn btn-primary" (click)="pickedTimeBtnClicked()"
+                  [style.background-color]="this.primaryColor"
+                  [style.border-color]="this.primaryColor">{{pickTimeText}}</button>
         </div>
       </div>
     </div>

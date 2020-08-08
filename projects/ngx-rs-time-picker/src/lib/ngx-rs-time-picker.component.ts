@@ -1,4 +1,4 @@
-import {AfterViewInit, Component, ElementRef, EventEmitter, Input, OnInit, ViewChild} from '@angular/core';
+import {AfterViewInit, Component, ElementRef, EventEmitter, Input, OnInit, Output, ViewChild} from '@angular/core';
 
 export interface Time {
   hour: string;
@@ -16,7 +16,7 @@ export class NgxRsTimePickerComponent implements OnInit, AfterViewInit {
   selectedHour = '00';
   selectedMinute = '00';
   @Input() pickTimeText = 'Pick Time';
-  pickedTime$: EventEmitter<Time> = new EventEmitter<Time>();
+  @Output() pickedTime: EventEmitter<Time> = new EventEmitter<Time>();
   @ViewChild('hoursList') hoursList: ElementRef;
   @ViewChild('minutesList') minutesList: ElementRef;
   @Input() date: Date;
@@ -55,8 +55,8 @@ export class NgxRsTimePickerComponent implements OnInit, AfterViewInit {
     this.selectedMinute = minute;
   }
 
-  okBtnClicked(): void {
-    this.pickedTime$.emit({hour: this.selectedHour, minute: this.selectedMinute});
+  pickedTimeBtnClicked(): void {
+    this.pickedTime.emit({hour: this.selectedHour, minute: this.selectedMinute});
   }
 
   setSelectedHour(event): void {
