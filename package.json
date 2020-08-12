@@ -7,7 +7,9 @@
     "build": "ng build",
     "test": "ng test",
     "lint": "ng lint",
-    "e2e": "ng e2e"
+    "e2e": "ng e2e",
+    "build-prod": "ng build NgxRsTimePicker --prod",
+    "publish-component": "npm publish dist/ngx-rs-time-picker"
   },
   "private": true,
   "dependencies": {
