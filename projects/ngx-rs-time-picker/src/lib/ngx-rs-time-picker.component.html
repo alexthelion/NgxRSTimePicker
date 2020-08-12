@@ -23,6 +23,7 @@
                  [style.border-bottom-color]="this.primaryColor"
                  [style.background-color]="this.inputControlBackgroundColor"
                  [style.color]="this.textColor"
+                 (focus)="hoursInput.select()"
                  #hoursInput
                  [value]="selectedHour">
           <input type="text" class="d-inline-flex form-control" value=":" readonly disabled
@@ -31,6 +32,7 @@
                  [style.border-bottom-color]="this.primaryColor"
                  [style.background-color]="this.inputControlBackgroundColor"
                  [style.color]="this.textColor"
+                 (focus)="minutesInput.select()"
                  #minutesInput
                  [value]="selectedMinute">
         </div>
