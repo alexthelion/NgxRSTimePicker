@@ -23,14 +23,16 @@
                  [style.border-bottom-color]="this.primaryColor"
                  [style.background-color]="this.inputControlBackgroundColor"
                  [style.color]="this.textColor"
-                 [value]="selectedHour" (change)="setSelectedHour($event)">
+                 #hoursInput
+                 [value]="selectedHour">
           <input type="text" class="d-inline-flex form-control" value=":" readonly disabled
                  [style.color]="this.textColor">
           <input type="number" class="d-inline-flex form-control text-center px-0" minutes
                  [style.border-bottom-color]="this.primaryColor"
                  [style.background-color]="this.inputControlBackgroundColor"
                  [style.color]="this.textColor"
-                 [value]="selectedMinute" (change)="setSelectedMinute($event)">
+                 #minutesInput
+                 [value]="selectedMinute">
         </div>
         <div class="col-md-6 mt-3 d-flex justify-content-center">
           <button type="button" class="btn btn-primary" (click)="pickedTimeBtnClicked()"

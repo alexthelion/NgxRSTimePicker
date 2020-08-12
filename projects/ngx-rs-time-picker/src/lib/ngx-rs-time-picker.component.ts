@@ -1,4 +1,16 @@
-import {AfterViewInit, Component, ElementRef, EventEmitter, Input, OnInit, Output, ViewChild} from '@angular/core';
+import {
+  AfterViewInit,
+  Component,
+  ElementRef,
+  EventEmitter,
+  Input,
+  OnDestroy,
+  OnInit,
+  Output,
+  ViewChild
+} from '@angular/core';
+import {fromEvent, Subscription, timer} from 'rxjs';
+import {debounce, map} from 'rxjs/operators';
 
 export interface Time {
   hour: string;
@@ -10,7 +22,7 @@ export interface Time {
   templateUrl: './ngx-rs-time-picker.component.html',
   styleUrls: ['./ngx-rs-time-picker.component.scss']
 })
-export class NgxRsTimePickerComponent implements OnInit, AfterViewInit {
+export class NgxRsTimePickerComponent implements OnInit, AfterViewInit, OnDestroy {
   hours: string[] = [];
   minutes: string[] = [];
   selectedHour = '00';
@@ -24,6 +36,12 @@ export class NgxRsTimePickerComponent implements OnInit, AfterViewInit {
   @Input() backgroundColor = 'white';
   @Input() textColor = 'black';
   @Input() inputControlBackgroundColor = 'white';
+  @ViewChild('hoursInput') hoursInput: ElementRef;
+  @ViewChild('minutesInput') minutesInput: ElementRef;
+  readonly OFFSET_SCROLL = 144;
+  private hoursInput$: Subscription;
+  private minutesInput$: Subscription;
+  private readonly KEY_UP_DELAY_TIME = 500;
 
   constructor() {
     for (let i = 0; i < 24; i++) {
@@ -37,7 +55,6 @@ export class NgxRsTimePickerComponent implements OnInit, AfterViewInit {
   ngOnInit(): void {
   }
 
-
   ngAfterViewInit(): void {
     if (this.date) {
       setTimeout(() => {
@@ -46,8 +63,17 @@ export class NgxRsTimePickerComponent implements OnInit, AfterViewInit {
         this.selectedMinute = String(this.date.getMinutes() < 10 ? '0' + this.date.getMinutes() : this.date.getMinutes());
         this.scrollToActiveMinute();
       }, 300);
-
     }
+
+    this.hoursInput$ = fromEvent(this.hoursInput.nativeElement, 'keyup').pipe(map((x: any) => {
+        return x.currentTarget.value;
+      }), debounce(x => timer(this.KEY_UP_DELAY_TIME))
+    ).subscribe(hours => this.setSelectedHour(hours));
+
+    this.minutesInput$ = fromEvent(this.minutesInput.nativeElement, 'keyup').pipe(map((x: any) => {
+        return x.currentTarget.value;
+      }), debounce(x => timer(this.KEY_UP_DELAY_TIME))
+    ).subscribe(minutes => this.setSelectedMinute(minutes));
   }
 
   setHours(hour: string): void {
@@ -62,8 +88,8 @@ export class NgxRsTimePickerComponent implements OnInit, AfterViewInit {
     this.pickedTime.emit({hour: this.selectedHour, minute: this.selectedMinute});
   }
 
-  setSelectedHour(event): void {
-    this.selectedHour = event.target.value;
+  setSelectedHour(value): void {
+    this.selectedHour = value;
     this.scrollToActiveHour();
   }
 
@@ -75,11 +101,11 @@ export class NgxRsTimePickerComponent implements OnInit, AfterViewInit {
       }
     }
 
-    this.hoursList.nativeElement.scrollTop = offsetTop;
+    this.hoursList.nativeElement.scrollTop = offsetTop - this.OFFSET_SCROLL;
   }
 
-  setSelectedMinute(event): void {
-    this.selectedMinute = event.target.value;
+  setSelectedMinute(value): void {
+    this.selectedMinute = value;
     this.scrollToActiveMinute();
   }
 
@@ -91,6 +117,11 @@ export class NgxRsTimePickerComponent implements OnInit, AfterViewInit {
       }
     }
 
-    this.minutesList.nativeElement.scrollTop = offsetTop;
+    this.minutesList.nativeElement.scrollTop = offsetTop - this.OFFSET_SCROLL;
+  }
+
+  ngOnDestroy(): void {
+    this.hoursInput$.unsubscribe();
+    this.minutesInput$.unsubscribe();
   }
 }
