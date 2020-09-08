@@ -11,10 +11,9 @@ This is a simple Angular Time Picker
 * backgroundColor - Time Picker container background color
 * textColor - Text Color (Digits etc.)
 * inputControlBackgroundColor - Hour and Minutes input background color
-
+* enableAnimation - Scroll smooth animation toggle (default: true)
 
 ## Installation
-* Bootstrap is required `npm i Boostrap` 
 * `npm i ngx-rs-time-picker`
 
 ### Demo

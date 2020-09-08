@@ -18,7 +18,7 @@ export interface Time {
 }
 
 @Component({
-  selector: 'NgxRSTimePicker',
+  selector: 'ngx-rs-time-picker',
   templateUrl: './ngx-rs-time-picker.component.html',
   styleUrls: ['./ngx-rs-time-picker.component.scss']
 })
@@ -36,6 +36,7 @@ export class NgxRsTimePickerComponent implements OnInit, AfterViewInit, OnDestro
   @Input() backgroundColor = 'white';
   @Input() textColor = 'black';
   @Input() inputControlBackgroundColor = 'white';
+  @Input() enableAnimation = true;
   @ViewChild('hoursInput') hoursInput: ElementRef;
   @ViewChild('minutesInput') minutesInput: ElementRef;
   readonly OFFSET_SCROLL = 144;
