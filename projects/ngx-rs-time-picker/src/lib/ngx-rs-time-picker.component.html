@@ -1,6 +1,6 @@
 <div class="time-picker-container" [style.background-color]="backgroundColor" [style.width]="width + 'px'">
   <div class="row d-flex justify-content-center">
-    <ul class="col-6 px-0 time-unit-card time-picker-list no-select"
+    <ul class="col-6 pr-0 time-unit-card time-picker-list no-select"
         [ngClass]="{'disable-scroll-animation': !enableAnimation}" #hoursList>
       <li class="time-unit p-2 d-flex justify-content-center" *ngFor="let hour of hours; let i = index"
           [ngClass]="{'active': selectedHour === hour}"
@@ -8,7 +8,7 @@
           [style.background-color]="selectedHour === hour ? this.primaryColor : 'unset'"
           (click)="setHours(hour)">{{hour}}</li>
     </ul>
-    <ul class="col-6 time-unit-card px-0 col-md-2 time-picker-list no-select"
+    <ul class="col-6 time-unit-card pl-0 time-picker-list no-select"
         [ngClass]="{'disable-scroll-animation': !enableAnimation}" #minutesList>
       <li class="time-unit p-2 d-flex justify-content-center" *ngFor="let minute of minutes; let i = index"
           [ngClass]="{'active': selectedMinute === minute}"
