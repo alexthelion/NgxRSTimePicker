@@ -37,23 +37,29 @@ export class NgxRsTimePickerComponent implements OnInit, AfterViewInit, OnDestro
   @Input() textColor = 'black';
   @Input() inputControlBackgroundColor = 'white';
   @Input() enableAnimation = true;
+  @Input() maxHours = 24;
+  @Input() manualInput = true;
+  @Input() width = '350';
   @ViewChild('hoursInput') hoursInput: ElementRef;
   @ViewChild('minutesInput') minutesInput: ElementRef;
   readonly OFFSET_SCROLL = 144;
+  hoursInputWidth = '3rem';
   private hoursInput$: Subscription;
   private minutesInput$: Subscription;
   private readonly KEY_UP_DELAY_TIME = 500;
 
   constructor() {
-    for (let i = 0; i < 24; i++) {
+  }
+
+  ngOnInit(): void {
+    this.hoursInputWidth = this.maxHours.toString().length + 1 + 'rem';
+
+    for (let i = 0; i < this.maxHours; i++) {
       this.hours.push(i < 10 ? '0' + i + '' : i + '');
     }
     for (let i = 0; i < 60; i++) {
       this.minutes.push(i < 10 ? '0' + i + '' : i + '');
     }
-  }
-
-  ngOnInit(): void {
   }
 
   ngAfterViewInit(): void {
@@ -66,15 +72,17 @@ export class NgxRsTimePickerComponent implements OnInit, AfterViewInit, OnDestro
       }, 300);
     }
 
-    this.hoursInput$ = fromEvent(this.hoursInput.nativeElement, 'keyup').pipe(map((x: any) => {
-        return x.currentTarget.value;
-      }), debounce(x => timer(this.KEY_UP_DELAY_TIME))
-    ).subscribe(hours => this.setSelectedHour(hours));
+    if (this.manualInput) {
+      this.hoursInput$ = fromEvent(this.hoursInput.nativeElement, 'keyup').pipe(map((x: any) => {
+          return x.currentTarget.value;
+        }), debounce(x => timer(this.KEY_UP_DELAY_TIME))
+      ).subscribe(hours => this.setSelectedHour(hours));
 
-    this.minutesInput$ = fromEvent(this.minutesInput.nativeElement, 'keyup').pipe(map((x: any) => {
-        return x.currentTarget.value;
-      }), debounce(x => timer(this.KEY_UP_DELAY_TIME))
-    ).subscribe(minutes => this.setSelectedMinute(minutes));
+      this.minutesInput$ = fromEvent(this.minutesInput.nativeElement, 'keyup').pipe(map((x: any) => {
+          return x.currentTarget.value;
+        }), debounce(x => timer(this.KEY_UP_DELAY_TIME))
+      ).subscribe(minutes => this.setSelectedMinute(minutes));
+    }
   }
 
   setHours(hour: string): void {

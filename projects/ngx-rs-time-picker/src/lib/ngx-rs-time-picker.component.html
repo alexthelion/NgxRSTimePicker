@@ -1,49 +1,49 @@
-<div class="time-picker-container" [style.background-color]="backgroundColor">
+<div class="time-picker-container" [style.background-color]="backgroundColor" [style.width]="width + 'px'">
   <div class="row d-flex justify-content-center">
-    <div class="mt-3 col-12 d-flex flex-column justify-content-center">
-      <div class="row mt-3 d-flex justify-content-center">
-        <ul class="col-6 col-md-2 px-0 time-unit-card time-picker-list no-select"
-            [ngClass]="{'disable-scroll-animation': !enableAnimation}" #hoursList>
-          <li class="time-unit p-2 d-flex justify-content-center" *ngFor="let hour of hours; let i = index"
-              [ngClass]="{'active': selectedHour === hour}"
-              [style.color]="this.textColor"
-              [style.background-color]="selectedHour === hour ? this.primaryColor : 'unset'"
-              (click)="setHours(hour)">{{hour}}</li>
-        </ul>
-        <ul class="col-6 time-unit-card px-0 col-md-2 time-picker-list no-select"
-            [ngClass]="{'disable-scroll-animation': !enableAnimation}" #minutesList>
-          <li class="time-unit p-2 d-flex justify-content-center" *ngFor="let minute of minutes; let i = index"
-              [ngClass]="{'active': selectedMinute === minute}"
-              [style.color]="this.textColor"
-              [style.background-color]="selectedMinute === minute ? this.primaryColor : 'unset'"
-              (click)="setMinutes(minute)">{{minute}}</li>
-        </ul>
-      </div>
-      <div class="row d-flex justify-content-center align-items-center mt-3">
-        <div class="form col-12 d-flex justify-content-center">
-          <input type="number" class="d-inline-flex form-control text-center px-0" hours
-                 [style.border-bottom-color]="this.primaryColor"
-                 [style.background-color]="this.inputControlBackgroundColor"
-                 [style.color]="this.textColor"
-                 (focus)="hoursInput.select()"
-                 #hoursInput
-                 [value]="selectedHour">
-          <input type="text" class="d-inline-flex form-control" value=":" readonly disabled
-                 [style.color]="this.textColor">
-          <input type="number" class="d-inline-flex form-control text-center px-0" minutes
-                 [style.border-bottom-color]="this.primaryColor"
-                 [style.background-color]="this.inputControlBackgroundColor"
-                 [style.color]="this.textColor"
-                 (focus)="minutesInput.select()"
-                 #minutesInput
-                 [value]="selectedMinute">
-        </div>
-        <div class="col-md-6 mt-3 d-flex justify-content-center">
-          <button type="button" class="btn btn-primary" (click)="pickedTimeBtnClicked()"
-                  [style.background-color]="this.primaryColor"
-                  [style.border-color]="this.primaryColor">{{pickTimeText}}</button>
-        </div>
-      </div>
+    <ul class="col-6 px-0 time-unit-card time-picker-list no-select"
+        [ngClass]="{'disable-scroll-animation': !enableAnimation}" #hoursList>
+      <li class="time-unit p-2 d-flex justify-content-center" *ngFor="let hour of hours; let i = index"
+          [ngClass]="{'active': selectedHour === hour}"
+          [style.color]="this.textColor"
+          [style.background-color]="selectedHour === hour ? this.primaryColor : 'unset'"
+          (click)="setHours(hour)">{{hour}}</li>
+    </ul>
+    <ul class="col-6 time-unit-card px-0 col-md-2 time-picker-list no-select"
+        [ngClass]="{'disable-scroll-animation': !enableAnimation}" #minutesList>
+      <li class="time-unit p-2 d-flex justify-content-center" *ngFor="let minute of minutes; let i = index"
+          [ngClass]="{'active': selectedMinute === minute}"
+          [style.color]="this.textColor"
+          [style.background-color]="selectedMinute === minute ? this.primaryColor : 'unset'"
+          (click)="setMinutes(minute)">{{minute}}</li>
+    </ul>
+  </div>
+  <div class="row d-flex justify-content-center align-items-center mt-3">
+    <div class="form col-12 d-flex justify-content-center" *ngIf="manualInput">
+      <input type="number" class="d-inline-flex form-control text-center px-0"
+             hours [max]="maxHours"
+             [style.border-bottom-color]="this.primaryColor"
+             [style.background-color]="this.inputControlBackgroundColor"
+             [style.color]="this.textColor"
+             [style.width]="hoursInputWidth"
+             (focus)="hoursInput.select()"
+             #hoursInput
+             [value]="selectedHour">
+      <input type="text" class="d-inline-flex form-control text-center" value=":" readonly disabled
+             [style.color]="this.textColor">
+      <input type="number" class="d-inline-flex form-control text-center px-0" minutes
+             [style.border-bottom-color]="this.primaryColor"
+             [style.background-color]="this.inputControlBackgroundColor"
+             [style.color]="this.textColor"
+             (focus)="minutesInput.select()"
+             #minutesInput
+             [value]="selectedMinute">
+    </div>
+    <div class="mt-3">
+      <button type="button" class="btn btn-primary" (click)="pickedTimeBtnClicked()"
+              style="font-size: 1.5rem"
+              [style.width]="this.width + 'px'"
+              [style.background-color]="this.primaryColor"
+              [style.border-color]="this.primaryColor">{{pickTimeText}}</button>
     </div>
   </div>
 </div>
