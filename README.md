@@ -11,7 +11,9 @@ This is a simple Angular Time Picker
 * backgroundColor - Time Picker container background color
 * textColor - Text Color (Digits etc.)
 * inputControlBackgroundColor - Hour and Minutes input background color
-
+* width - Container width
+* manualInput - Toggle display manual input
+* maxHours - Max hours (apply custom max number for hours)
 
 ## Installation
 * Bootstrap is required `npm i Boostrap` 
