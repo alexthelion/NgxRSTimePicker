@@ -1,8 +1,8 @@
 # NgxRSTimePicker
 This is a simple Angular Time Picker
 
-![Demo Image](https://github.com/alexthelion/NgxRSTimePicker/blob/master/images/demo.JPG)
-![Dark Mode Image](https://github.com/alexthelion/NgxRSTimePicker/blob/master/images/dark-mode.JPG)
+![Demo Image](images/picktime.png)
+![Dark Mode Image](images/picktimedark.png)
 
 ## Available Inputs:
 * pickTimeText - Text of pick time button
