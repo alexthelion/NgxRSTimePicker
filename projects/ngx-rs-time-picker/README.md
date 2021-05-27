@@ -1,8 +1,8 @@
 # NgxRSTimePicker
 This is a simple Angular Time Picker
 
-![Demo Image](https://github.com/alexthelion/NgxRSTimePicker/blob/master/images/demo.JPG)
-![Dark Mode Image](https://github.com/alexthelion/NgxRSTimePicker/blob/master/images/dark-mode.JPG)
+![Demo Image](../../images/picktime.png)
+![Dark Mode Image](../../images/picktimedark.png)
 
 ## Available Inputs:
 * pickTimeText - Text of pick time button
@@ -11,9 +11,12 @@ This is a simple Angular Time Picker
 * backgroundColor - Time Picker container background color
 * textColor - Text Color (Digits etc.)
 * inputControlBackgroundColor - Hour and Minutes input background color
-* enableAnimation - Scroll smooth animation toggle (default: true)
+* width - Container width
+* manualInput - Toggle display manual input
+* maxHours - Max hours (apply custom max number for hours)
 
 ## Installation
+* Bootstrap is required `npm i Boostrap`
 * `npm i ngx-rs-time-picker`
 
 ### Demo
