@@ -98,7 +98,7 @@ export class NgxRsTimePickerComponent implements OnInit, AfterViewInit, OnDestro
   }
 
   setSelectedHour(value): void {
-    this.selectedHour = value;
+    this.selectedHour = value.replace(/^0+/, '');
     this.scrollToActiveHour();
   }
 
