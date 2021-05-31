@@ -16,11 +16,20 @@ This is a simple Angular Time Picker
 * maxHours - Max hours (apply custom max number for hours)
 
 ## Installation
-* Bootstrap is required `npm i Boostrap` 
 * `npm i ngx-rs-time-picker`
 
 ### Demo
-https://rs-time-picker-demo.firebaseapp.com/
+https://rs-time-picker-demo.firebaseapp.com
+
+### Usage
+
+Import the NgxRsTimePickerModule module in app module
+Then use it in your own component:
+
+<ngx-rs-time-picker [primaryColor]="'red'"
+[maxHours]="24"
+[manualInput]="true"
+[enableAnimation]="true"></ngx-rs-time-picker>
 
 ### Created By RSinnotech Team
 Visit us at: www.rsinnotech.com
