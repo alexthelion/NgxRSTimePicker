@@ -5,6 +5,10 @@
   height: 50vh;
 }
 
+::ng-deep cdk-virtual-scroll-viewport::-webkit-scrollbar {
+  display: none;
+}
+
 li {
   font-size: 32px;
 }

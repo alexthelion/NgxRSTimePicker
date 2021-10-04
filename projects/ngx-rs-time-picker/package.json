@@ -22,10 +22,10 @@
   ],
   "license": "MIT",
   "peerDependencies": {
-    "@angular/animations": "^11.0.0",
-    "@angular/cdk": "^11.0.0",
-    "@angular/common": "^11.0.0",
-    "@angular/core": "^11.0.0"
+    "@angular/animations": "11.0.5",
+    "@angular/cdk": "11.0.3",
+    "@angular/common": "11.0.5",
+    "@angular/core": "11.0.5"
   },
   "dependencies": {
     "tslib": "^2.0.0"
