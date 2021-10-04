@@ -2,19 +2,24 @@
   <div class="row d-flex justify-content-center">
     <ul class="col-6 pr-0 time-unit-card time-picker-list no-select"
         [ngClass]="{'disable-scroll-animation': !enableAnimation}" #hoursList>
-      <li class="time-unit p-2 d-flex justify-content-center" *ngFor="let hour of hours; let i = index"
-          [ngClass]="{'active': selectedHour === hour}"
-          [style.color]="this.textColor"
-          [style.background-color]="selectedHour === hour ? this.primaryColor : 'unset'"
-          (click)="setHours(hour)">{{hour}}</li>
+      <cdk-virtual-scroll-viewport #hoursViewPort [itemSize]="unitHeight" class="viewport">
+        <li class="time-unit p-2 d-flex justify-content-center" *cdkVirtualFor="let hour of hours; let i = index"
+            [ngClass]="{'active': selectedHour === hour}"
+            [attr.id]="hour"
+            [style.color]="this.textColor"
+            [style.background-color]="selectedHour === hour ? this.primaryColor : 'unset'"
+            (click)="setHours(hour)">{{hour}}</li>
+      </cdk-virtual-scroll-viewport>
     </ul>
     <ul class="col-6 time-unit-card pl-0 time-picker-list no-select"
         [ngClass]="{'disable-scroll-animation': !enableAnimation}" #minutesList>
-      <li class="time-unit p-2 d-flex justify-content-center" *ngFor="let minute of minutes; let i = index"
+    <cdk-virtual-scroll-viewport #minutesViewPort [itemSize]="unitHeight" class="viewport">
+    <li class="time-unit p-2 d-flex justify-content-center" *cdkVirtualFor="let minute of minutes; let i = index"
           [ngClass]="{'active': selectedMinute === minute}"
           [style.color]="this.textColor"
           [style.background-color]="selectedMinute === minute ? this.primaryColor : 'unset'"
           (click)="setMinutes(minute)">{{minute}}</li>
+    </cdk-virtual-scroll-viewport>
     </ul>
   </div>
   <div class="row d-flex justify-content-center align-items-center mt-3">

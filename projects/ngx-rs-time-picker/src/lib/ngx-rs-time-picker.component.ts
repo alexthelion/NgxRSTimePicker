@@ -11,6 +11,7 @@ import {
 } from '@angular/core';
 import {fromEvent, Subscription, timer} from 'rxjs';
 import {debounce, map} from 'rxjs/operators';
+import {CdkVirtualScrollViewport} from '@angular/cdk/scrolling';
 
 export interface Time {
   hour: string;
@@ -42,17 +43,21 @@ export class NgxRsTimePickerComponent implements OnInit, AfterViewInit, OnDestro
   @Input() width = '350';
   @ViewChild('hoursInput') hoursInput: ElementRef;
   @ViewChild('minutesInput') minutesInput: ElementRef;
-  readonly OFFSET_SCROLL = 144;
   hoursInputWidth = '3rem';
   private hoursInput$: Subscription;
   private minutesInput$: Subscription;
   private readonly KEY_UP_DELAY_TIME = 500;
+  @ViewChild('hoursViewPort') hoursViewPort: CdkVirtualScrollViewport;
+  @ViewChild('minutesViewPort') minutesViewPort: CdkVirtualScrollViewport;
+  @Input() unitHeight = 64;
 
   constructor() {
   }
 
   ngOnInit(): void {
-    this.hoursInputWidth = this.maxHours.toString().length + 1 + 'rem';
+    if (this.maxHours > 9) {
+      this.hoursInputWidth = this.maxHours.toString().length + 1 + 'rem';
+    }
 
     for (let i = 0; i < this.maxHours; i++) {
       this.hours.push(i < 10 ? '0' + i + '' : i + '');
@@ -98,19 +103,13 @@ export class NgxRsTimePickerComponent implements OnInit, AfterViewInit, OnDestro
   }
 
   setSelectedHour(value): void {
-    this.selectedHour = value.replace(/^0+/, '');
+    const valueWithoutZeros = value.replace(/^0+/, '');
+    this.selectedHour = valueWithoutZeros.toString().length < 2 ? '0' + valueWithoutZeros : valueWithoutZeros;
     this.scrollToActiveHour();
   }
 
   private scrollToActiveHour(): void {
-    let offsetTop = 0;
-    for (const item of this.hoursList.nativeElement.children) {
-      if (item.textContent === this.selectedHour) {
-        offsetTop = item.offsetTop;
-      }
-    }
-
-    this.hoursList.nativeElement.scrollTop = offsetTop - this.OFFSET_SCROLL;
+    this.hoursViewPort.scrollToIndex(this.hours.indexOf(this.selectedHour));
   }
 
   setSelectedMinute(value): void {
@@ -119,14 +118,7 @@ export class NgxRsTimePickerComponent implements OnInit, AfterViewInit, OnDestro
   }
 
   private scrollToActiveMinute(): void {
-    let offsetTop = 0;
-    for (const item of this.minutesList.nativeElement.children) {
-      if (item.textContent === this.selectedMinute) {
-        offsetTop = item.offsetTop;
-      }
-    }
-
-    this.minutesList.nativeElement.scrollTop = offsetTop - this.OFFSET_SCROLL;
+    this.minutesViewPort.scrollToIndex(this.minutes.indexOf(this.selectedMinute));
   }
 
   ngOnDestroy(): void {
