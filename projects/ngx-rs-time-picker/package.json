@@ -1,6 +1,6 @@
 {
   "name": "ngx-rs-time-picker",
-  "version": "0.0.14",
+  "version": "0.0.16",
   "description": "Angular Time Picker",
   "author": "RSinntoech",
   "repository": {
@@ -22,10 +22,10 @@
   ],
   "license": "MIT",
   "peerDependencies": {
-    "@angular/animations": "11.0.5",
-    "@angular/cdk": "11.0.3",
-    "@angular/common": "11.0.5",
-    "@angular/core": "11.0.5"
+    "@angular/animations": "^16.0.1",
+    "@angular/cdk": "^16.0.1",
+    "@angular/common": "^16.0.1",
+    "@angular/core": "^16.0.1"
   },
   "dependencies": {
     "tslib": "^2.0.0"
